@@ -27,10 +27,10 @@ class JumboAdapter(
 
 
     //The context refers to the ui parent so to speak
-    lateinit var context: Context
+    private lateinit var context: Context
 
     //This is a set of the items we have in our collection
-    var favorites: MutableSet<String> = HashSet()
+    private var favorites: MutableSet<String> = HashSet()
 
     //this method is returning the view for each item in the list
     //also something you must override
@@ -114,7 +114,6 @@ class JumboAdapter(
             //in our collection
             if (favorites.contains(jumbo.nr.toString())) {
                 itemView.checkbox.isChecked = true
-                itemView.checkbox.setChecked(true)
                 Log.d("adapter", "nr " + jumbo.nr + " is in favorites")
             } else
                 itemView.checkbox.isChecked = false
