@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RecyclerViewDemoKotlin</string>
+    <string name="antal_i_samlingen"> Du har %1$d jumbobøger i samlingen.</string>
+
 </resources>

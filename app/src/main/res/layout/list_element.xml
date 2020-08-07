@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:contentPaddingTop="-5dp"
+        card_view:contentPaddingBottom="-5dp"
+        card_view:cardCornerRadius="20dp"
+        card_view:contentPaddingLeft="2dp"
+        card_view:contentPaddingRight="2dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/element_text_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_blue_dark"
+                android:text="Nr. ">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="@dimen/element_text_size"
+                android:id="@+id/list_element_nr">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/element_text_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_blue_dark"
+                android:text=" : ">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/element_text_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_blue_dark"
+                android:id="@+id/list_element_titel">
+
+            </TextView>
+            </LinearLayout> <!-- first line -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/element_text_size"
+            android:text="Udgivet i "
+            android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/element_text_size"
+                android:id="@+id/list_element_year"
+                android:layout_height="wrap_content">
+
+        </TextView>
+
+        </LinearLayout> <!-- end of second line -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/element_text_size"
+                android:text="I min samling : "
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:button="@null"
+                android:id="@+id/checkbox"
+                android:background="?android:attr/listChoiceIndicatorMultiple"
+                android:theme="@style/customCheckBox"
+                android:buttonTint="@color/checkboxcolor" />
+
+        </LinearLayout> <!-- end of 3rd line -->
+
+            </LinearLayout> <!-- end of vertical -->
+
+
+        </LinearLayout> <!-- end of master horizontal -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="140dp"
+                android:scaleType="fitXY"
+                android:textSize="@dimen/element_text_size"
+                android:id="@+id/list_element_image"/>
+        </LinearLayout>
+
+            <!-- aspect ratio of images is 1:1.52 -->
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>
