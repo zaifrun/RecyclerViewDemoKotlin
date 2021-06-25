@@ -11,8 +11,8 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.list_element.view.*
 import org.pondar.recyclerviewdemokotlin.R
+import org.pondar.recyclerviewdemokotlin.databinding.ListElementBinding
 import org.pondar.recyclerviewdemokotlin.interfaces.UpdateCollection
 import org.pondar.recyclerviewdemokotlin.models.JumboBook
 
@@ -23,7 +23,7 @@ class JumboAdapter(
     var resources: Resources,
     var updateListener: UpdateCollection
 ) :
-    RecyclerView.Adapter<JumboAdapter.ViewHolder>() {
+    RecyclerView.Adapter<JumboAdapter.JumboViewHolder>() {
 
 
     //The context refers to the ui parent so to speak
@@ -31,19 +31,21 @@ class JumboAdapter(
 
     //This is a set of the items we have in our collection
     private var favorites: MutableSet<String> = HashSet()
+    private lateinit var binding: ListElementBinding
 
     //this method is returning the view for each item in the list
     //also something you must override
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JumboViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_element, parent, false)
         context = parent.context
-
-        return ViewHolder(v)
+        binding = ListElementBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        // val itemBinding = RowPaymentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return JumboViewHolder(itemBinding = binding)
     }
 
     //this method is binding the data on the list - notice that this
     //overrides the same method in the RecyclerView.Adapter that we are extending
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: JumboViewHolder, position: Int) {
         holder.bindItems(jumboList[position], favorites, context, resources, updateListener)
     }
 
@@ -56,7 +58,12 @@ class JumboAdapter(
 
     //the class is holding the actual UI elements - the .xml file to use for each element
     //comes from the R.layout.list_element from the onCreateViewHolder method
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    //class PaymentHolder(private val itemBinding: RowPaymentBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+
+
+        class JumboViewHolder(private val itemBinding: ListElementBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindItems(
             jumbo: JumboBook,
@@ -66,19 +73,20 @@ class JumboAdapter(
             updateListener: UpdateCollection
 
         ) {
+
             //This refers to id's from the .xml file.
-            itemView.list_element_nr.text = jumbo.nr.toString()
-            itemView.list_element_titel.text = jumbo.title
-            itemView.list_element_year.text = jumbo.year.toString()
+            itemBinding.listElementNr.text = jumbo.nr.toString()
+            itemBinding.listElementTitel.text = jumbo.title
+            itemBinding.listElementYear.text = jumbo.year.toString()
 
 
             //getting the image
             val resID = resources.getIdentifier(jumbo.img, "drawable", context.packageName)
-            itemView.list_element_image.setImageResource(resID)
+            itemBinding.listElementImage.setImageResource(resID)
 
 
             //making the zoom window when we click on an image
-            itemView.list_element_image.setOnClickListener {
+            itemBinding.listElementImage.setOnClickListener {
 
                 val builder = Dialog(context)
                 builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -113,16 +121,16 @@ class JumboAdapter(
             //makes sure the checkbox is click if the jumbobook is
             //in our collection
             if (favorites.contains(jumbo.nr.toString())) {
-                itemView.checkbox.isChecked = true
+                itemBinding.checkbox.isChecked = true
                 Log.d("adapter", "nr " + jumbo.nr + " is in favorites")
             } else
-                itemView.checkbox.isChecked = false
+                itemBinding.checkbox.isChecked = false
 
             //this is called whenever we click on a checkbox
-            itemView.checkbox.setOnClickListener {
+            itemBinding.checkbox.setOnClickListener {
                 Log.d("adapter", "box clicked for jumbo nr : " + jumbo.nr)
-                Log.d("state : ", itemView.checkbox.isChecked.toString())
-                if (itemView.checkbox.isChecked) {
+                Log.d("state : ", itemBinding.checkbox.isChecked.toString())
+                if (itemBinding.checkbox.isChecked) {
                     favorites.add(jumbo.nr.toString())
                 } else {
                     favorites.remove(jumbo.nr.toString())

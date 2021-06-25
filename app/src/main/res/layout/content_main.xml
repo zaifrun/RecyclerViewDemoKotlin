@@ -24,7 +24,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/jumbo_recyclerview"
+            android:id="@+id/jumboRecyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="?attr/actionBarSize"
