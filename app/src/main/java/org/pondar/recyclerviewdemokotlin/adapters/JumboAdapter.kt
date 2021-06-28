@@ -59,10 +59,7 @@ class JumboAdapter(
     //the class is holding the actual UI elements - the .xml file to use for each element
     //comes from the R.layout.list_element from the onCreateViewHolder method
 
-    //class PaymentHolder(private val itemBinding: RowPaymentBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-
-
-        class JumboViewHolder(private val itemBinding: ListElementBinding) :
+    class JumboViewHolder(private val itemBinding: ListElementBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindItems(
